@@ -151,7 +151,7 @@ All timing uses `millis()`.
 - Brief written answers to the Reflection Questions below (a few sentences each is enough).
 
 >[!IMPORTANT]
-> Wokwi link: _(paste your own working Wokwi link here, with your circuit and code running)_
+> Wokwi link: _(**Finished:** https://wokwi.com/projects/475566023683273729)_
 
 ## Self-Assessment Checklist
 - [ ] `DockReading` struct groups `sensor`, `value`, `unit`, `timestamp`; the log is one array of these, not parallel arrays
@@ -170,37 +170,37 @@ Answer these in your own words.
 
 1. Why does this build use one `DockReading` struct array instead of separate arrays per sensor type (one for temperature, one for humidity, one for light)?
    ```
-
+    Because all the readings have the same structure, we can use one DockReading array instead of managing three separate arrays. This makes the data more organised and easier to manage, read, and understand.
 
    ```
 
 2. Your `get_threshold()` function must return a sentinel for a sensor name it doesn't recognise. Walk through what would go wrong in the alert logic if it returned `0` instead of a negative sentinel.
    ```
-
+    That way get_threshold() uses -1 to show that no threshold was found. If it returned 0 instead, the program could treat 0 as a valid threshold and trigger a false alert when the sensor value is greater than 0.
 
    ```
 
 3. Why must the value-sorted display mode avoid permanently reordering the underlying log array?
    ```
-
+    Because the program should keep the readings in timestamp order as the original log, while changing the display order is just a user preference.
 
    ```
 
 4. Identify every place in your program where `millis()`-based timing is used instead of `delay()`, and explain what would break in each case if `delay()` were used instead.
    ```
-
+    We used millis() for the DHT22 timing, report timing, button debounce, reading timestamps, and the LED/buzzer alert duration. If we used delay() in one part of the project it will stop the whole project even though we only want to stop one part of it.
 
    ```
 
 5. `compute_stats()` must scan only one sensor type's values, not the whole log indiscriminately. What would an average that mixed temperature, humidity, and light values together actually mean — and why is that a problem?
    ```
-
+    Because compute_stats() only counts the temperature readings instead of averaging all the readings together. If we averaged all the readings together, it would produce a useless number because each reading type is different.
 
    ```
 
 6. If you were given one more week to extend this station, what would you add, and which past week's concept would it draw on?
    ```
-
+    If I were given another week, I would extend the project by adding an OLED display that shows the current status. This would give the workers a quick idea of the environment around them and would use the OLED display concept from previous weeks.
 
    ```
 
