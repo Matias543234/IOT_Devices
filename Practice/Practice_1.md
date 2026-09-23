@@ -202,6 +202,7 @@ Answer these in your own words.
    ```
     If I were given another week, I would extend the project by adding an OLED display that shows the current status. This would give the workers a quick idea of the environment around them and would use the OLED display concept from previous weeks.
 
+
    ```
 
 
