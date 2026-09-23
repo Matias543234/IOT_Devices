@@ -119,6 +119,8 @@ All timing — sensor polling, tamper window, alert duration, report heartbeat �
 >[!NOTE]
 > Wokwi link: https://wokwi.com/projects/475226916329119745
 
+**Finished:** https://wokwi.com/projects/475663275302780929
+
 ## Self-Assessment Checklist
 - [ ] `StationReading` struct groups `sensor`, `value`, `unit`, `timestamp`, `zone`; the log is one array of these, not separate arrays per cabinet
 - [ ] `log_reading()` keeps the array sorted by timestamp via insertion (bubbling only the new record), not a full re-sort
@@ -138,37 +140,37 @@ Answer these in your own words they're the kind of question the real Assessment 
 
 1. Why does this build store `zone` as a field on one shared `StationReading` array instead of keeping three separate arrays, one per cabinet?
    ```
-
+    Because each array has the same structure, we can store them in one shared array instead of having three separate arrays. This is more organised and easier to manage and read.
 
    ```
 
 2. `count_recent_access()` re-scans the whole log every time it's called, rather than just checking "how long since the last access to this zone?" What kind of tampering pattern would that simpler last-event check fail to catch, that the rolling window count still catches?
    ```
-
+    A last-event check only looks at the most recent access, so it does not give the full picture. For example, if three accesses happened within 10 seconds, it would only check the last access, while the rolling window counts all three accesses.
 
    ```
 
 3. Your `get_zone_name()` function must return a sentinel for a zone number it doesn't recognise. Walk through what the tamper-alert message would print if it just returned the raw number instead — and why that would be worse than an obviously-wrong sentinel string.
    ```
-
+    If we didn't use a message like "Unknown Zone" and returned the raw number instead, it could cause confusion. The alert would show a number that someone might think is a valid zone, even though it is not.
 
    ```
 
 4. `compute_zone_stats()` must skip any record whose `sensor` isn't `"access"`. What would the per-zone tallies (and the "busiest cabinet" result) look like if it accidentally counted every record — including temperature and humidity readings, which all carry `zone = -1`?
    ```
-
+    This would make the project work incorrectly because the temperature and humidity has the zone of -1 and the array has 0, 1, and 2. If compute_zone_stats() counted them, it could make the zone counts and the busiest cabinet result incorrect.
 
    ```
 
 5. Identify every place in your program where `millis()`-based timing is used instead of `delay()`, and explain what would break in each case if `delay()` were used instead.
    ```
-
+    We used millis() in this project for DHT22 timing, Alert duration, Tamper window, Report timing, Reading timestamps. If we used delay() in any of these parts, it would stop the whole project instead of the part we want to pause.
 
    ```
 
 6. If you were given more time to extend this station, what would you add to help distinguish an accidental double-log (e.g. one open-close motion tripping the PIR twice) from a genuine repeated access — and which earlier concept would it draw on?
    ```
-
-
+    We could use the millis() concept from previous weeks and add a 2-second cooldown to ignore accidental double-triggers from the PIR. We could also add a lock to the cabinet so that after someone closes it, they have to wait 3 seconds before opening it again. This would give the millis() cooldown time to finish and help distinguish accidental double-logs from genuine repeated access.
+ 
    ```
 
