@@ -131,6 +131,7 @@ Test each requirement on its own as you build it, then run this whole table befo
 >[!NOTE]
 > Wokwi link: https://wokwi.com/projects/476038822892508161
 
+**Finished Assessment Practice 3:** https://wokwi.com/projects/476666766268718081
 ## Self-Assessment Checklist
 - [ ] `GuardEvent` struct groups `sensor`, `value`, `unit`, `timestamp`, `armed`; the log is one array of these, not separate arrays per sensor
 - [ ] `log_event()` keeps the array sorted by timestamp via insertion (bubbling only the new record), not a full re-sort
@@ -156,49 +157,49 @@ Answer these in your own words. They're the kind of question the real Assessment
 
 1. Every `GuardEvent` stores the `armed` flag as it was *when the event happened*, instead of `find_recent_event()` checking the current global `armed`. Describe a sequence of events (using the Arm button) where checking only the current flag would give a wrong answer.
    ```
-
+    Basically, if the armed was only in find_recent_event(), this will make the system work incorrectly because the armed status can change. For example, if the system was armed when motion happened but then the user presses the Arm button to disarm, find_recent_event() would see the current value as disarmed even though the motion happened while it was armed.
 
    ```
 
 2. Why does this guard correlate motion and light instead of raising an alarm the moment either sensor fires on its own? Describe two realistic false alarms that a single-sensor rule would produce in a real gallery.
    ```
-
+     We use two sensors to make sure the alarm won't happen from a false alarm. For example, a staff member or visitor could walk by the display case, or a guard could shine a flashlight at the display case while standing still. These would trigger a single sensor but are normal activities.
 
    ```
 
 3. `find_recent_event()` returns an index, or `-1` if nothing matched, rather than just `true`/`false`. What does the caller do with the index in this build, and what would happen if the caller used `events[-1]` without checking?
    ```
-
+    We used motionIndex to know the timestamp, which event happened, and the time between it using millis(). If we added events[-1] instead, it would give us incorrect or unpredictable behaviour since -1 means nothing was found.
 
    ```
 
 4. WARNING decays on its own but ALARM only clears when a person presses Acknowledge. What could go wrong in a real museum if ALARM also decayed after 10 seconds?
    ```
-
+    We should make the ALARM stay on until the situation is acknowledged by someone, just like a fire alarm. If it stops after 10 seconds, people might not acknowledge it, and the fire could still be there and continue burning everything.
 
    ```
 
 5. `button_pressed()` takes its `ButtonState` **by reference**. What would go wrong, for both the debounce and the press detection, if it took the struct by value instead?
    ```
-
+    Passing ButtonState by value could cause problems. One is that debounce wouldn't remember the last change time properly, while for press detection it wouldn't remember the previous button state properly, so the button press might never be detected correctly.
 
    ```
 
 6. Because timestamps come from `millis()`, new records nearly always arrive already in order, so the insertion-sort loop rarely swaps anything. Give two places in this build that would silently break if the log were *not* sorted, which is why the sort step is still worth keeping.
    ```
-
+    The two places that could break are that first, it could remove the wrong event by accident, thinking that it is an old event, and second, the program might show the wrong 5 newest events in the Serial report.
 
    ```
 
 7. The OLED redraws only when its content changes or every 2000 ms, instead of on every pass of `loop()`. What goes wrong with a redraw every pass, and what does the heartbeat protect you from when the screen content hasn't changed? Also explain why a missing OLED must not stop the guard from raising an ALARM.
    ```
-
+    if an OLED redraws every loop, this will keep updating the display for no reason, which could make the display less efficient. The 2000 ms heartbeat helps the display not to become frozen and updates for new information even when the screen content hasn't changed. The OLED is there to just display the current security information for the guards, so it should not interfere with raising an ALARM.
 
    ```
 
 8. If you were given extra time to extend this station, what would you add, and which earlier topic would it draw on?
    ```
-
+    I think we can use a temperature sensor like an IR temperature sensor. If someone tries to get near the security system and touch it, while there is also motion, it could give an alarm and I got this concept from the DHT that I used from previous weeks but a different sensor since the DHT is only for air temperature readings not objects.
 
    ```
 
