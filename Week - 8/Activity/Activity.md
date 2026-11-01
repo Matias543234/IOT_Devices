@@ -56,8 +56,12 @@ Before any sensor data can be sent anywhere, the device needs to reliably connec
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+> [Finished Schematic](https://circuit-studio.pages.dev/#p=zfZLLbtswEEV_JbhrKhAlxQ_uirQIjD5stOmmhWFQEm0zoUSWpOI4hv-9oCpDshF3OZyZe-bO8IC1thX3YJDaR4W0RSN95HxTSg2CF2Gd1DUYJah5JcDwdX8z0483XSkICiu4FyUYkjgZRTSOkuljPGHZiKXj25SOf4GgMeX7RVNG09skyUJRrrktZ6FIOJMmkUsjI4swR6Ero2tRewf2-wAZan5SEPi9CUO1nSB4BZvEBHuwUUxgtQeLCRTPhQLDj_RmMbufg8BYbRzY4XgdeiQdp1ht3oqJGic9TokOFqXZPxzNTjw6GRC_fPpIBzgUWmkLBitKHAnWShqwNVdODHDP2zSTWdHjrHDSeW07Jk065t27zO_JkKi3lQNLQgtvvJ63YUe8wlfZjsYvA_6mPtnN6KXd6YD88O3M7QVgSbCTVgwuuFu9be5U4hoQ8HY9F_5N-C9hUXmf7Y8Rsh9C9sTvb7Zb_RlvX_mTPlc-7_18odz7DtnFNeVnXZsyH_9vZnqm3H7U8PywmM1pdq67JCga53V1r0sBVjdKhXS9AQO3ZSPr4EHJ3HIr2-UtCfJW23Druz0_NZURtg2Ox78)
+>
+> Activity 1 - Schematic for Non-Blocking Wi-Fi Connection With a Status LED 
+>
+>![Schematic for Non-Blocking Wi-Fi Connection With a Status LED](image.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio](https://circuit-studio.pages.dev/#p=zdZDBSsQwFEV_pdyVQjok7TijbyfjwlkpTN0os0jbKJG2CS-JOpT-u2TQjeDywbn3XN6MV8ejjiBYF8vOcpdsLENMvXUQ-DAcrJtASmDSowGhMaM3rGNiU9wOhmNxOIVoxuLi7r5R6hICHRsdTQ9CJatNqWSp1o2sSCqqtqtrtXmGQPL9H6jaNlKSvKH11apSdYZap7nfZ8gEX1dlqEtvu7ysc6N3k5liAL3MsJl5UhCIJ59nnpMQ-AJtt1LgBCqVkgLsIkgKDLo1AwiHunjc7x4g4Nn5AJqX_73LUeDTssnSo0CXQnTjzvUGNKVhyK3TGwia-2SnvHOwLWu2v4m2Bc3wmuOP6T3ld56PZfkG)
@@ -68,13 +72,15 @@ Before any sensor data can be sent anywhere, the device needs to reliably connec
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 14 |
 
 Write `connectWiFi()` using `SSID`/`PASSWORD` constants set to **your own 2.4 GHz Wi-Fi network** (a phone hotspot works well; the ESP32 cannot join 5 GHz networks), called once from `setup()` with a bounded blocking retry (`WiFi.status() != WL_CONNECTED`, max 20 attempts, `delay(500)` between attempts; this is acceptable here because it runs once, in `setup()`, exactly like this course's other one-shot initialisation calls). If it connects, print `"Connected! IP: "` followed by `WiFi.localIP()`; if it runs out of attempts, print `"Connection failed - continuing offline."`. In `loop()`, check `WiFi.status()` on every pass and drive the status LED `HIGH` when connected, `LOW` when not. `loop()` itself must contain no `delay()` at all.
 
 >
 > Evidence: _(attach a photo or short video of your working circuit on the ESP32-PICO, plus a screenshot of the Serial Monitor output)_
 >
+>A copy of my code activity 1: https://wokwi.com/projects/479213974528275457
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -100,8 +106,11 @@ With Wi-Fi connected, the device now needs to send a reading somewhere: a POST r
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+> [Finished Schematic](https://circuit-studio.pages.dev/#p=zfZJBj9owEIX_CnpnZ-XESUp83UorDi1Ipa3UCiGTOKxXSWzZDixC_PfKgVVgRTna8_y-eTM-ota2FR4cSvuoVLbslY-c7yulQbCT1indgccEnWglOL4dJjO9nFykICitFF5W4EhokkcxjRhd0pSnKafsKY-__AFBb6q7ooxyGj8lRRJEGy1sNQsi6QxLIscio8rQR6lbozvZeQf-9wgVND9jEPiDCU0NL0HwDh5TSnAAzymB1R6cEjRiIxtw_GCTxex5DgJjtXHgx9P_qSdyAZXrqp_SLK1HntFedl7pVnppz9yMnblJ8gEursiL-TK-wkK_tm7oldITQd0oA16Lxskrqnb7rDDZSN2VJduxCy494-LsTk72i8W3Ie8TVFO3U5WPhG1X3donxR37l-9fH9ivCPbKyqtN7dd5XjGT9iAQIX35aaoGHDHCLsbqmD5UF6H6wR9Xs18XeVkX2_dHzuyT85j6oXMmnTio4pHz7xvn4UOG65fFbD69tV0RlL3zun3WlQTv-qYJ5W4LDmGrXnXhmzdqY4VVw-xWBJvB2gjrL2N-61sj7XA4nf4B)
 >
+> Activity 2: Potentiometer HTTP POST Schematic 
+>
+>![Potentiometer HTTP POST Schematic](image-2.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -112,13 +121,15 @@ With Wi-Fi connected, the device now needs to send a reading somewhere: a POST r
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO ___ |
+> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO 8 |
 
 Write `bool sendReading(float value)` that checks `WiFi.status() == WL_CONNECTED` before doing anything else, then uses `HTTPClient` to `POST` a JSON body (`{"sensor":"potentiometer","value":<value>}`) to `SERVER_URL = "http://httpbin.org/post"` (a free public test server: no account needed, and it replies `200` to any POST, so a `200` in your Serial Monitor means the reading arrived), calling `http.end()` unconditionally afterward. Connect in `setup()` by reusing your `connectWiFi()` from Task 1. In `loop()`, read the potentiometer and call `sendReading()` on a non-blocking `SEND_INTERVAL = 5000` ms interval using `millis()`.
 
 >
 > Evidence: _(attach a photo or short video of your working circuit on the ESP32-PICO, plus a screenshot of the Serial Monitor output)_
 >
+>A copy of my code Activity 2: https://wokwi.com/projects/479292251350067201
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -143,7 +154,12 @@ A workshop wants every reading of a sensor stored in a cloud database it can vie
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+>
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zfZJRb9owFIX_CjrPTuXEAYpfO6nioQVpbJM2IWQSA6aJbdkODCH---RAFagYj_Y9Pt899_qIlXG1COBQJiSFckWjQuJDUyoDgp10XhkNnhJoUUtwvB16YzPrXaQgKJwUQZbgyGg2SFKaMDqjz7yf8yx_GmT0NwgaW94XDTntP_UzFkVLI1w5jiLpLcsSzxKrithHYWprtNTBg_85QkXNjxQE4WBjU-1LEPwFTyklOIAPKIEzAZwSVGIpK3B8Z73p-GUCAuuM9eDH0_-pJ3IBFYtmoOXGi45nTZA6KFPLIN2ZO8zOXJZ_gkdX5Olkll5hYTa1b3ul9ESwqpQFX4nKyytqRT-2aWk76q4o2I5dcOyMy4Z3crKfLL0NeZ8gBHXP3nWEtS5v7fP0jv3r-7cH9nOCvXLyalP7xXLrcrYegEDE9MWXqVpwpIi76Kpd-lidxuonv1vNfjHSWR3s6JEz--LcpX7ovB2GzU58PHL-dePcfsh4_TodT_Jb2zlB0fhg6hdTSnDdVFUs6zU4hCsbpeM3r9TSCafa2c0Jlq21FS5cxrxtaitdezid_gE)
+>
+> Activity 3: Supabase Potentiometer Schematic
+>
+>![Supabase_Potentiometer_Schematic](image-1.png)
 >
 > <details><summary>Schematic link</summary>
 >
@@ -155,13 +171,15 @@ A workshop wants every reading of a sensor stored in a cloud database it can vie
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO ___ |
+> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO 4 |
 
 Write `bool sendToSupabase(int potValue)` that POSTs the JSON body `{"pot_value":<reading>}` to `SUPABASE_URL + "/rest/v1/sensor_log"` over HTTPS (`WiFiClientSecure` with `setInsecure()`, then `http.begin(client, url)`), with the headers `Content-Type: application/json`, `apikey: <key>`, `Authorization: Bearer <key>` and `Prefer: return=minimal`. Return `true` only if the response code is exactly `201` (Created). In `loop()`, read the potentiometer and call it on a non-blocking `SEND_INTERVAL = 15000` ms interval. Supabase doesn't force a minimum gap, but one row every 15 seconds is plenty for a slowly changing reading and keeps the free database small. Print `[OK] Row saved` or `[FAIL] Response: <code>` to Serial after each send, then open **Table Editor → sensor_log** and confirm new rows are appearing.
 
 >
 > Evidence: _(attach a photo or short video of your working circuit on the ESP32-PICO, plus a screenshot of the Serial Monitor output)_
 >
+>A copy of my code Activity 3: https://wokwi.com/projects/479299974323212289
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -189,8 +207,12 @@ Every logged reading so far in this course has used `millis()`, which is time si
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zjZLBbuIwFEV_Bd21UyUxExrvKpBaFtMiDdPFjBAyjkMdJbFxHChC_PvIKVUAdVCX0bs55_naB-TaVtyBQWkXCGVFq1zQuDZTGgRbaRula7CIoOaVBMPP_WCq54NTFATCSu5kBoY4jJMgCgMazcOERfeMju7o_egPCFqTfR1KWTy8S5PUh1aa22zqQ7IxNA4aGhgl_B5CV0bXsnYN2N8DlM_8jkDg9sYv1f0JgnewKAwJ9mBJSGC1AwsJSr6SJRh-0cFsOn4BgbHaNGCH4_-tR3ISiSWnIW_ei96Xvbko-vCNTj4afiGcPM2jS1teKgOW87KRZwK1Wad7V_aCrRB0Sz8MCb02xKMzB32l33IMd8WwFFnvWNfZlWD4KUjP-I_Pkxv8BcFOWXl2L7slT8Nc5ykIONgB4qpDA4bX8Ri--37eV-DnMz_93KC_it3ybZPxDW1vsR-fJ1fs_ug32YUr6m3Bb7EnD_OHC3j3CjvrbPry45K8IBBt43Q11pkEq9uy9ON6DQZus1bV_m2XamW5VV2FC4JVhzbculPbRVsZabuP4_Ef)
+>
+>Activity 4: DHT11 NTPS chematic
+>
+>![DHT11_NTP_Schematic](image-3.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -201,13 +223,15 @@ Every logged reading so far in this course has used `millis()`, which is time si
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | DHT11 DATA (10 kΩ pull-up from DATA to 3.3V, unless your 3-pin DHT11 board already has one; VCC → 3.3V, GND → GND) | Digital input/output | GPIO ___ |
+> | DHT11 DATA (10 kΩ pull-up from DATA to 3.3V, unless your 3-pin DHT11 board already has one; VCC → 3.3V, GND → GND) | Digital input/output | GPIO 5 |
 
 Write `syncTime()` (`configTime(0, 0, "pool.ntp.org", "time.nist.gov")` to start the sync, then `setenv("TZ", "AEST-10", 1);` and `tzset();` to set Australian Eastern time, then a bounded loop waiting for `time(nullptr)` to exceed `1000000`, since a synced clock is never that small) and `getTimestamp()` (formats `localtime()` into `"YYYY-MM-DD HH:MM:SS"`). Call `connectWiFi()` then `syncTime()` once from `setup()`, **only if** Wi-Fi actually connected. In `loop()`, read the DHT11 no more than once every 2000 ms (non-blocking, `isnan()`-guarded) and print `getTimestamp()` alongside each valid reading to Serial.
 
 >
 > Evidence: _(attach a photo or short video of your working circuit on the ESP32-PICO, plus a screenshot of the Serial Monitor output)_
 >
+>A copy of my code Activity 4: https://wokwi.com/projects/479387569283480577
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -234,8 +258,12 @@ A device that only ever connects once in `setup()` never recovers if Wi-Fi drops
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+> [Finished Schematic](https://circuit-studio.pages.dev/#p=zjZNtb5swEID_SnWfTQV2mgR_m9qpirY10dZu0qaqMuC2bgF7fgkhVf77ZEoEpCHaR7jz89z5zm_wKHXBLFAQ0gap0KkTNjDWZUICgjXXRsgSaISgZAUHCt_qs4W8PWtTAUGqObM8Awo4xNMgCgMS3YYxxXMahefhfPIbEDiVHU0iISXTczyLfVIimc4WPokbRXBgSKBE6utIZaFkyUtrgP55A-Fz7iJAYGvli2pOAoIN0CgMEdRApyECLS3QEEHOEp4DhR_kbLW4XAICpaUyQN9249YdakXpw4TUunoqOp-SlpdWyIJbrt-9F-TdSyZ7cdwzr5a3UU8L8rkwTa1huEPwmAsF9JHlhves-bzcJBd5Z81522PQSGqg870rmvdkXz9fDWSpzKUGCppnMGqr1srUuu5smhthrGzbCyL8royPKr_jj91hf4I5K5fNZysc0RcMl9PXuNM_lftmJ9FBs_2Lvb4Z9DrKj2O10XLd8ddpStaknV17nXh2ZGnIT_JfBie22mz_Hulgj28aOcRf31zhcfw9gkpo3lv76gFnzLkXf1Wsme7B-JR_ZH7OSRftVslHP_no3t_tefVgL2Z6E4sheXj2ywG5m5uPrsbI7lngWbQ5VXM0IDev2_--Xi2WER7jxsZOths-5HbP9SO3vwknK355Ni7O5SkyOSB3G3CS_IoTW7nqFPnX-F1Mhth7BKkzVhaXMuNAS5fnPlw-AQWmMydK30IuEs20aPboHkHSoBXTtl25F1corpuP3e4f)
+>
+>Activity 5: Non-Blocking Reconnect Circuit Schematic
+>
+>![Non-Blocking_Reconnect_Circuit_Schematic](image-4.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -246,8 +274,8 @@ A device that only ever connects once in `setup()` never recovers if Wi-Fi drops
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO ___ |
-> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO 4 |
+> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 12 |
 
 Write `maybe_reconnect()`: gated by its own `RECONNECT_CHECK_INTERVAL = 5000` ms, it calls `WiFi.begin(SSID, PASSWORD)` again **whenever** `WiFi.status() != WL_CONNECTED`, with no `while`/`delay()` loop wrapped around that call. `setup()` starts the initial connection with `WiFi.begin()` alone (no blocking wait this time). In `loop()`, call `maybe_reconnect()` every pass, drive the status LED from the current connection state, and read/print the potentiometer on its own non-blocking 1000 ms interval regardless of connection state.
 
@@ -256,6 +284,8 @@ Write `maybe_reconnect()`: gated by its own `RECONNECT_CHECK_INTERVAL = 5000` ms
 >
 > Evidence: _(attach a photo or short video of your working circuit on the ESP32-PICO, plus a screenshot of the Serial Monitor output)_
 >
+>A copy of my code Activity 5: https://wokwi.com/projects/479392619120905217
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -282,8 +312,12 @@ Combine Tasks 3 and 4: a real sensor's two readings, saved together as one row i
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zjZLBbuIwFEV_Bd21UyUxExrvKpBaFtMiDdPFjBAyjkMdJbFxHChC_PvIKVUAdVCX0bs55_naB-TaVtyBQWkXCGVFq1zQuDZTGgRbaRula7CIoOaVBMPP_WCq54NTFATCSu5kBoY4jJMgCgMazcOERfeMju7o_egPCFqTfR1KWTy8S5PUh1aa22zqQ7IxNA4aGhgl_B5CV0bXsnYN2N8DlM_8jkDg9sYv1f0JgnewKAwJ9mBJSGC1AwsJSr6SJRh-0cFsOn4BgbHaNGCH4_-tR3ISiSWnIW_ei96Xvbko-vCNTj4afiGcPM2jS1teKgOW87KRZwK1Wad7V_aCrRB0Sz8MCb02xKMzB32l33IMd8WwFFnvWNfZlWD4KUjP-I_Pkxv8BcFOWXl2L7slT8Nc5ykIONgB4qpDA4bX8Ri--37eV-DnMz_93KC_it3ybZPxDW1vsR-fJ1fs_ug32YUr6m3Bb7EnD_OHC3j3CjvrbPry45K8IBBt43Q11pkEq9uy9ON6DQZus1bV_m2XamW5VV2FC4JVhzbculPbRVsZabuP4_Ef)
+>
+>Activity 6: Two-Field Cloud Logging Schematic
+>
+>![DHT11_Two_Field_Cloud_Logging_Schematic](image-5.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -294,13 +328,15 @@ Combine Tasks 3 and 4: a real sensor's two readings, saved together as one row i
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | DHT11 DATA (10 kΩ pull-up from DATA to 3.3V, unless your 3-pin DHT11 board already has one; VCC → 3.3V, GND → GND) | Digital input/output | GPIO ___ |
+> | DHT11 DATA (10 kΩ pull-up from DATA to 3.3V, unless your 3-pin DHT11 board already has one; VCC → 3.3V, GND → GND) | Digital input/output | GPIO 5 |
 
 Write `sendToSupabase(float temp, float humidity)` sending both in one JSON body, `{"temperature":<t>,"humidity":<h>}`, using the same HTTPS request as Task 3. In `loop()`, on a non-blocking `SEND_INTERVAL = 15000` ms poll: read the DHT11 (`isnan()`-guarded), print `getTimestamp()` with both values to Serial, then call `sendToSupabase()` only if the DHT11 read was valid **and** `WiFi.status() == WL_CONNECTED`.
 
 >
 > Evidence: _(attach a photo or short video of your working circuit on the ESP32-PICO, plus a screenshot of the Serial Monitor output)_
 >
+>A copy of my code Activity 6: https://wokwi.com/projects/479456162655228929
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -329,8 +365,12 @@ Build the complete station: a DHT11-based cloud logger with an OLED status displ
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zjZXfb9owEID_leqeQxXHgRC_VTB1aF2pVtaHTVXlJAZcQpzaDr8q_vfJAWqSkYjHYPv77s535hOmQi6pBgJc6E7MZVxw3VG6SLgAB1ZMKi4yIMiBjC4ZEPi5vRmJyc1xKzgQS0Y1S4CA53q9DkIdF01cTHBAvOC2F_h_wIEiTy5u8hFxvVsUuGZTJKhMRmYTUzn2Ogp3ch6bOGKxzEXGMq2A_P0Ebvb8RuCA3uYmqPIkOLABglzXgS2QnuuAFBqI60BKI5YCgWd88zQajMGBXIpcAfncN1v3zlEUv7GEbhXl1pfMNUIHX9c_-LB7QTj8PkFV2zTlOZApTRU7E_TXeid2gRWk7JhOBx_5_RMe9c8ED9-G5wKIRSokEJAsgUabznGySxbWJr50p2yQfyGbcd2m-M4cR15_0_PLazrYo7Rg4ABNEsmUAgLuBg-a4wm8aJdtqI1HMsWVFvJYAuQdggovluBXJSQxXyognjlBCy3G5edR2KCXyTyaqcTqZ9mp-D6qFT88E98_Dq-63JjFupesLH8Vx3iFDwo_qLePF5w58Au-yrHZxXjuRRdy-BL4DTl41_Cn0byX-34LHzXx8TV8TVW2jlF7jVCvqUYtObw6sOaSnT0c6zcUzmeLwswzLYem1oW5eaZMu0Z21U6oWb0zqye_fSnWb0GgZrgbVMnVsz9qZNt-ZvWpiRy54iMMVVvMqEIu30fz8_3TaIy8Jq5-zyO9yKpc--AZwPBucteM7jaRt7MlwyxsI78MBrVq2GFprUaGcURnURv7_nFYY9shaWXT1XQb7Lwq276Zl9l2QFrZIuNdXu-PKvv_mtjhaGXzcCEXRSv7efDQfJFhE_jjfStwgFvBw5YO6VfBrw7EhdJiORAJA5IVaWqWsxkQoDIpeGb-8lMeSSp5ObivDkQlOqdSH2f8vVjmTJYf-_0_)
+>
+>Activity 7: Full NonBlocking IoT Cloud Logger Schematic
+>
+>![Full_NonBlocking_IoT_Cloud_Logger_Schematic](image-6.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -341,10 +381,10 @@ Build the complete station: a DHT11-based cloud logger with an OLED status displ
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | DHT11 DATA (10 kΩ pull-up from DATA to 3.3V, unless your 3-pin DHT11 board already has one; VCC → 3.3V, GND → GND) | Digital input/output | GPIO ___ |
-> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | OLED SDA (VCC → 3.3V, GND → GND) | I²C data | GPIO ___ |
-> | OLED SCL | I²C clock | GPIO ___ |
+> | DHT11 DATA (10 kΩ pull-up from DATA to 3.3V, unless your 3-pin DHT11 board already has one; VCC → 3.3V, GND → GND) | Digital input/output | GPIO 5 |
+> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 12 |
+> | OLED SDA (VCC → 3.3V, GND → GND) | I²C data | GPIO 8 |
+> | OLED SCL | I²C clock | GPIO 9 |
 
 **Program requirements:**
 1. `connectWiFi()`: bounded blocking retry, called once from `setup()`; `syncTime()` called once afterward, only if connected.
@@ -358,6 +398,8 @@ Build the complete station: a DHT11-based cloud logger with an OLED status displ
 
 >
 > Evidence: _(attach a photo or short video of your working circuit on the ESP32-PICO, plus a screenshot of the Serial Monitor output)_
+> 
+>A copy of my code Activity 7: https://wokwi.com/projects/479465124316393473
 
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
@@ -385,9 +427,13 @@ A workshop bench has no Wi-Fi, but the technician wants to check a sensor and sw
 - Jumper wires
 
 > **Schematic:**
+> 
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+> [Finished Schematic](https://circuit-studio.pages.dev/#p=zjZRhr5owGIX_ys37ud60IKL9tty7GLPtajbvlmwxBkvVKtBaisg1_velqEEcmH2E9-15zmkOHGEpdRwYoCCk6TChWSZMJzVZKCQg2HOdCpkAJQiSIOZA4VvxNJLTp8sqIGCaB4aHQMHBTq9DSAeTKfao51Ov-9zD7m9AkKmwealPncEzcbp2aSEDHY7sEk-V63RSt6MEsz6YjJVMeGJSoH-OIOzOOwEEplDWVHkSEByAEowRFEB7GIGWBihGEAULHgGFH-7TZPQyBgRKS5UCPZ7aqSd0AbE53h-igrGKF_ELze-daaQJ9_XzK7lhAZOR1EBB8xBOCJaRUECXQZTyGxaXO6EDU7E0T0VqpD4Dve4F6DcAv9dwch2nQImHW1m-ly27vUPFWiWXXH3vPpfj34CGb7VkrQCVr9l251cAJQ1PjJAxN_yayD2j3P4VNbghTcbTplAY4_ZYhbdwBgWuqHvG3L1bv0CXNFyg-9P9r1wf-rBaMdxwcVf5rtcgP3x7ddrlZwhyoflNxfP5wDdhvO8DgqBs0F1FlP2gbJcW1bQqq51-stMrv-p0Ps81X-_8bV25fvbLnXJVFzudtCmbvmZkmT3yTGrK5ZdsXw8nozHBbbqbHKebD1HXrRr2r-5tEx46PjjLZNvNHin_euC4TZab_FCI7SNZ985wVawGwzMELEuNjF9kyIEmWRTZcbICCoEOM5HYf2UkFjrQouzRDMGiVFeBNpfKbbJYcV0-nE5_AQ)
 >
+> Activity 8: ESP32 Access Point Phone Control Panel Schematic
+>
+> ![ESP32_Access_Point_Schematic](image-8.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -398,8 +444,8 @@ A workshop bench has no Wi-Fi, but the technician wants to check a sensor and sw
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO ___ |
-> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO 1 |
+> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 10 |
 
 **Program requirements:**
 1. Set `WiFi.mode(WIFI_AP)` and start the access point with `WiFi.softAP(AP_SSID, AP_PASSWORD)`. Name the network `"ESP32-<your first name>"`, and use a password of **at least 8 characters**.
@@ -418,6 +464,7 @@ A workshop bench has no Wi-Fi, but the technician wants to check a sensor and sw
 >
 > Evidence: _(attach a photo or short video of your phone controlling the LED, plus a screenshot of the Serial Monitor output)_
 >
+>A copy of my code Activity 8: https://wokwi.com/projects/479471693619896321
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -526,42 +573,42 @@ Answer these in your own words before moving on:
 
 1. Why must `WiFi.status()` be checked before every single HTTP send, even though the device already connected successfully once in `setup()`?
    ```
-
+   Because the WiFi connection isn't always stable and can disconnect at any time, even after connecting successfully in setup().
 
    ```
 
 2. What's the practical difference between calling `WiFi.begin()` once in `setup()` wrapped in a blocking retry loop, versus calling it from `maybe_reconnect()` with no loop around it at all?
    ```
-
+   Because a blocking retry loop prevents the rest of the program from running until it exits. maybe_reconnect() attempts to reconnect and then lets the rest of the program continue running.
 
    ```
 
 3. Supabase doesn't force a minimum gap between inserts. Why do the tasks still send only once every 15 seconds, and what would happen to the `sensor_log` table and the free plan if the device inserted a row on every pass of `loop()`?
    ```
-
+   Even though Supabase doesn't enforce an insert limit, sending data on every loop pass would create thousands of unnecessary rows in sensor_log, quickly consuming storage and free-plan resources. The interval of 15 seconds keeps inserts manageable.
 
    ```
 
 4. Explain why `getTimestamp()` returns a near-1970 date if it's called before `configTime()`'s sync has actually completed, even though `configTime()` itself doesn't throw any error.
    ```
-
+   Because configTime() requests the correct date and time from an internet server but doesn't wait for the response. If getTimestamp() runs too early, it returns an incorrect date near 1970 because the ESP32 hasn't synced its clock yet.
 
    ```
 
 5. In Task 5, `maybe_reconnect()` and the potentiometer's read interval both use `millis()`, but on two entirely separate timer variables. Why would combining them into a single shared timer be a mistake?
    ```
-
+   Because each task has a different job and interval. Using one shared timer could cause them to interfere with each other and run at the wrong times.
 
    ```
 
 6. Your sketch contains a Supabase key, and the table holds real sensor data. What privacy or security risks does that create, and how do the publishable key, the insert-only row level security policy and keeping the `service_role` key off the device help address them?
    ```
-
+   Someone could find the credentials and send unwanted data. The publishable key is designed for client-side use, while insert-only RLS limits the device to adding data. The service_role key must stay private because it has powerful permissions and can bypass RLS.
 
    ```
 
 7. Tasks 1-7 run the ESP32 in Station mode and Task 8 runs it in Access Point mode. For each of these devices, say which Wi-Fi mode you'd choose (Station, Access Point, AP + Station or Off) and why: (a) a greenhouse sensor that logs to Supabase and that staff also check on their phones inside the greenhouse; (b) a battery-powered soil sensor that sends one reading every 10 minutes; (c) a toy robot controlled from a phone in a park.
    ```
-
+   For (a), AP + Station because it needs existing Wi-Fi to send sensor data while allowing staff to connect their phones directly. (b) needs Station so it can connect to existing Wi-Fi to send readings to Supabase every 10 minutes. (c) only needs AP because the robot creates its own Wi-Fi network so a phone can connect directly and control it without needing a router or internet connection.
 
    ```
