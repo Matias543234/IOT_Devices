@@ -34,6 +34,8 @@ Write a sketch that puts the radio in Station mode (`WiFi.mode(WIFI_STA)`) and c
 >
 > Evidence: _(screenshot of the Serial Monitor showing the scan table; your own network should be in the list)_
 >
+>A copy of my code Activity 1: https://wokwi.com/projects/480013702329256961
+
 **Check yourself:**
 - [ ] Radio set to Station mode before scanning, and no `WiFi.begin()` call
 - [ ] Each line shows number, RSSI, quality word, channel, security and SSID
@@ -59,8 +61,12 @@ Students keep reporting that their devices "won't connect", but the only clue th
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zfZLdb9owFMX_FXSenSp2wkL9VnVThfZRtHUvmxDKhwFvSWzZDjQg_vfKGW0SVPZon-Pzu_f6HrFWpkodOKRyQS5N3kgXWNcUUoFgJ4yVqganBHVaCXB8bSdz9TQ5W0GQG5E6UYCDhexDQGkQJk9hwhnlU3YTh_EvEDS6eN-U8Ci-YTHzpkylpph7k7A6YoGNAi1zX0euKq1qUTsL_vsI6T0_KQhcq31R3UsQPIPHIUELTkMCoxx4SFCmmSjB8SOaLOb3jyDQRmkLfjxdh57ImZOvNm3VTsO2x5XiDAvi8B8uecXR2QD45dNHOqAhV6Uy4DCiwIlgXUoNvk5LKwY0XTQzVkc9zQgrrVPmjOwILfjsXeT3EVBtKwtOp-FV2n53u9mK5562qd96Sy56ux1wHr6NWrvIXxLspRGD39qvDqaJVL0HQdrN4qJZ7XfDTyXr1X7wXr3z6iu__5_96nAo2XbHxsnjt58vkvu2vbq4lqyreBaxv_-rmY6Su6X01w-L-SONxrlLgryxTlX3qhDgdVOWXq434EhN0cja73opM5Ma2Q1vSZB12To17jznP02lhekOp9ML)
+>
+>Activity 2: Connection-Diagnosis-Schematic:
+>
+>![ESP32-PICO connection diagnosis circuit showing GPIO13 connected to an LED through a 220 ohm resistor, with the LED cathode connected to GND.](image.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -71,7 +77,7 @@ Students keep reporting that their devices "won't connect", but the only clue th
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Status LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Status LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
 
 Write `const char* statusText(wl_status_t status)` that returns a helpful message for each of `WL_IDLE_STATUS`, `WL_NO_SSID_AVAIL`, `WL_CONNECTED`, `WL_CONNECT_FAILED`, `WL_CONNECTION_LOST` and `WL_DISCONNECTED` (plus a `default`). In `setup()`, set Station mode and call `WiFi.begin()` **once**, with no waiting loop. In `loop()`, with no `delay()`:
 - check `WiFi.status()` on every pass, and print `"Status: "` + `statusText()` **only when the status changes** (keep a `lastStatus` variable)
@@ -84,6 +90,8 @@ Then test three cases and screenshot each: (a) correct details, (b) an SSID that
 >
 > Evidence: _(photo or short video of the LED blinking then staying on, plus three Serial Monitor screenshots: correct details, wrong SSID, wrong password)_
 >
+>A copy of my code Activity 2: https://wokwi.com/projects/480021042724052993
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -111,8 +119,12 @@ The technician from Task 1 now wants a handheld meter: after joining the network
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zlZVdb5swFIb_SnWuzQQ4JMF3UzdV0T5abd3NpiriwzAnYLu2Sciq_PfJLJUDCnS5BB-_z_vi48MLFELViQECTBgvYyprmPG0aXImAMGOKs0EBxIg4ElNgcCXw81KPN6cSgFBpmhiaA4EQj-ce0Hg-YtHPyZBRCL8LpotfgKCRuaXi5a2yMdzW5SKROUrW0S1xKGnsSdZZn1kopaCU240kF8vwGzNjwAQmIO0prqdgKAFEvg-ggOQuY9ACQPER1AlKa2AwHd887C6vQcEUgmpgbwcx6lHdAJla1_ttG4jx6voiebh2T9cuHzlBcsz4uePH4IzHGSiEgoIKJrDEUFRMQmkSCpNz3B4z2LcLiZx_hguvBpndk3cpJPpgnAMh6_G1WXJ04I7nKKaaSPUidmxLBNfZH7rfU_xu9ZAgsgfxaUyWzxvDw5X8td0s2CYLj4D3X3tHd0ogNV-0XL9dp74cp7wujysyNsy01N5XHMM8oT_k6eswlLPmjfzhNHlPPi6PM3mj2gO7WSe5UgePJ7nCcGeKXo2L_brbYEXebkFBEnXrYN2lHY62b5N3aq7G3b1vV195bsBsV_PRM2YYn3l_t5PA2XXl3b1YUx5a-p45-d9Zddylzy78THpOVnomIeyr9zfO_Tsem_Scys2cle3fWXXVpc8uwk76blIeKHTwQn29w49u_6a9FzwvTLbaKo3gp5y9_uxr-8eVvcBHtMtxTbKlmrq_KZ0Z2O6Sj8_b1I99Y2ndJd93ScEWaONqG9FToHwpqrsMi-BQKLyhnH7F65YqhLFukv1hCDttGWizOn-bZpaUtU9HI9_AQ)
+>
+>Activity 3: RSSI Signal Meter Schematic:
+>
+>![ESP32-PICO connected to three LEDs through individual 220 ohm resistors on GPIO13, GPIO14 and GPIO18, with all LED cathodes connected to GND.](image-1.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -123,9 +135,9 @@ The technician from Task 1 now wants a handheld meter: after joining the network
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Bar LED 1 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Bar LED 2 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Bar LED 3 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Bar LED 1 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
+> | Bar LED 2 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 14 |
+> | Bar LED 3 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 18 |
 
 Connect in Station mode from `setup()` with a bounded blocking retry (max 20 attempts × 500 ms, called once only). If connected, call `printConnectionInfo()`, which prints the SSID, router MAC (`WiFi.BSSIDstr()`), channel, RSSI, IP address, subnet mask, gateway, DNS server and the ESP32-PICO's own MAC address, one per line with labels. Write `int rssiToBars(int rssi)` (3 bars at -60 dBm or stronger, 2 bars at -70 or stronger, 1 bar at -80 or stronger, otherwise 0) and `void showBars(int bars)`. In `loop()`, every `METER_INTERVAL = 1000` ms (`millis()`, no `delay()`), read `WiFi.RSSI()`, update the LEDs and print `RSSI <value> dBm -> <bars> bar(s)`. If not connected, show 0 bars and print `Not connected -> 0 bars`.
 
@@ -134,6 +146,8 @@ Test it by walking away from the router (power the board from a power bank or lo
 >
 > Evidence: _(photo or video of the LED bars, a Serial Monitor screenshot of the connection report, and a small table of the RSSI and bars you measured at three distances)_
 >
+>A copy of my code Activity 3: https://wokwi.com/projects/480028056565487617
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -169,6 +183,8 @@ Call it once from `setup()`, then print the IP address, gateway and `WiFi.getHos
 >
 > Evidence: _(screenshots of: Step 1 output, the Serial Monitor showing the static IP and hostname, and the laptop terminal showing successful ping replies; optionally the router's device list showing your hostname)_
 >
+>A copy of my code Activity 4: https://wokwi.com/projects/480102486408070145
+
 **Check yourself:**
 - [ ] Static IP, gateway and subnet match the values found in Step 1 (same first three numbers, real router address as the gateway)
 - [ ] `WiFi.setHostname()` comes before `WiFi.mode()` and `WiFi.begin()`
@@ -193,8 +209,12 @@ A cool-room temperature sensor keeps going offline for short periods, and the fa
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zfZJfb9owFMW_CjrPTmUnIaV-q7qpQvtTtHUvmxByEkPdJbFnO2QI8d0rZ6AQVPZo3-Pzu-f67rHWthYeHEr7qFC2aJWPnG9LpUGwldYp3YAzgkbUEhxfdpO5fp4cpSAorBReluCIaZxFjEV09kwzPo15TG_uKPsJgtaU10RTepPM0iDKtbDlPIikM0kcuSQyqgh9FLo2upGNd-C_9lBB84OBwO9MaKp_CYK_4IxSgh14Rgms9uCUoBK5rMDxPZks5g9PIDBWGwe-P1ynHsgRVKzWwsfbNBt4lTzSoiT9h2PxicdmZ8TPHz-wMxwKXWkLDitLHAjWlTLga1E5eYZ7-V3T1-zPgLPSKee1PTJ7VmAm7zK_jYj6pXbgbEqv4rptufEyHXCb5pQuZZfp7s5Aj19H4S4AS4JOWXn2Y91KdlWubkMy0U_jIq4J-xHmkg_VYfaheh-qJ_7wRd2qyNJpkpix8_jtpwvnIXeoLq453yZx1nXufz2zkXO_mOH6cTF_YsnYd0lQtM7r-kGXErxpqyqUmw04hC1b1YR9r1RuhVX98JYEee9thPXHOb-2tZG2PxwObw)
+>
+>Activity 5: Event-Driven Connection Monitor Schematic:
+>
+>![ESP32-PICO connected to a status LED through a 220 ohm resistor on GPIO13, with the LED cathode connected to GND.](image-2.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -205,7 +225,7 @@ A cool-room temperature sensor keeps going offline for short periods, and the fa
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Status LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Status LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
 
 Write `onWiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)` that handles `ARDUINO_EVENT_WIFI_STA_GOT_IP` and `ARDUINO_EVENT_WIFI_STA_DISCONNECTED` by **only** setting `volatile` flags and saving `info.wifi_sta_disconnected.reason` (no printing, no `delay()` inside it). Register it with `WiFi.onEvent()` in `setup()` **before** `WiFi.begin()`, and don't use a blocking wait loop. Write `const char* reasonText(uint8_t reason)` covering at least reasons 15, 200, 201, 202 and 204. In `loop()`, with no `delay()`:
 - handle the flags: on "got IP" print `[EVENT] Online. IP: ...` with the RSSI; on "disconnected" print `[EVENT] Disconnected - reason <code>: <text> (drops so far: <n>)`
@@ -218,6 +238,8 @@ Test it by switching your hotspot off and on three times. Then upload once with 
 >
 > Evidence: _(video of the LED going solid → blinking → solid as you switch the hotspot off and on, plus Serial Monitor screenshots showing three drops with their reasons and the wrong-password reason)_
 >
+>A copy of my code Activity 5: https://wokwi.com/projects/480109075489836033
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -246,8 +268,12 @@ An installer wants a single handheld tool for checking Wi-Fi before installing I
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zlVVbb5swFP4r1Xk2FcZAiN-2bqqibW21dS-bqoqLkzgxmBhTclH--0SahsDAbR6Tc_xdfD4fdjCVKg01UOBSWzFXccm1Vegy4RIQvDBVcJkBxQiyMGVA4cfmaiIfr46tgCBWLNQsAQqO7fgWxpYdPNoBJQH1vOuR7f8BBGWe9Da5mLrk2nbduimSoUomdRMrcuJYBbFyHtc6YpnmMmOZLoD-3QGve35jQKA3eS3qcBIQrIFiYiPYAPVtBEpqoDYCEUZMAIVf5OphcnMPCHIl8wLobj_MukdHovg5mWerrVYNn2BHNovgVzrsvPHh4Izx-9cv-IwOYimkAgqKJbBHMBU8BzoNRcHO6FYYe9FoYaJz7CE652K6dT5bapIa6YIhOnIxHXHUyBfJ2fBKrWX2yuiNXgkJ6Rnf58e73suMRBgv60Ip6jaeaavMhwVMl5uFuw4aAYoVvNBSHU2PjxMd93r-2ZIg52kBFHv2INt4q0pbeQ3bLDvdbtAd5viM6PauFZ3htMzFHLvv2nG8fjvOZXa0E6QzbRvtBAN2nI_YIXMdhYHz7nRIvx1y4XTmVRnkW5Od5mV37JCP2ClFuZKbsIfA949Rd9_wnVGbwB0meEJQccXO1mH1XOAALxIBCMLD6-iEPa-Xb_0qoqbabJq6-qmuvvE3-696jtVSVQq3kdtnv3WQm9jX1Ych5NUmHRUi6iCfEt2nuVlXRs1ZKd2lL9vI7bNdzU22jZp5tZhxN20jN7Ht09x8QIya83jkurqD3D773z2fAmzWXKx4uq06mk-buE9zk1wjcmB7S17FJmTcQj58t-u_bx8m9-7g-JgfLpOt6ZINsJgM4Vbegq342vRITLiDeovQDtIXY5BNuEEb9wlBXBZapjcyYUCzUoi6nM2AQqiSkmd1sAWPVKj4YQs8IYgO2Hmo9HFhLMo0Z-rwY7__Bw)
+>
+>Activity 6: Wi-Fi Site Survey Tool Schematic:
+>
+>![ESP32-S3 connected to three signal bar LEDs through 220 ohm resistors on GPIO13, GPIO14 and GPIO18, with a push button connected to GPIO4 and GND.](image-3.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -258,10 +284,10 @@ An installer wants a single handheld tool for checking Wi-Fi before installing I
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Bar LED 1 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Bar LED 2 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Bar LED 3 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Push button (other leg → GND, `INPUT_PULLUP`) | Digital input | GPIO ___ |
+> | Bar LED 1 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
+> | Bar LED 2 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 14 |
+> | Bar LED 3 (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 18 |
+> | Push button (other leg → GND, `INPUT_PULLUP`) | Digital input | GPIO 4 |
 
 Combine Tasks 3 and 5 and add an on-demand scan:
 - **Connect:** Station mode, `WiFi.onEvent()` registered before `WiFi.begin()`, no blocking wait loop.
@@ -274,6 +300,8 @@ Combine Tasks 3 and 5 and add an on-demand scan:
 >
 > Evidence: _(video showing the bars changing as you move, a scan being triggered by the button while the bars keep updating, and a hotspot off/on cycle; plus Serial Monitor screenshots of the connection report, a scan result and a logged drop)_
 >
+>A copy of my code Activity 5: https://wokwi.com/projects/480116371122050049
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -378,30 +406,29 @@ Answer these in your own words before moving on:
 
 1. Describe the four stages a station goes through to join a router. If `WiFi.status()` returns `WL_NO_SSID_AVAIL`, which stage failed, and what three things would you check?
    ```
-
-
+   The four stages are scanning (searching for Wi-Fi networks), authentication (checking the password and security), association (the router accepts the ESP32), and the four-way handshake (establishing an encrypted connection).
    ```
 
 2. An ESP32-PICO shows `WL_CONNECTED` but every Supabase send fails. Give two possible causes, and explain why `WL_CONNECTED` doesn't prove the device can reach the internet.
    ```
-
+   two possible causes are incorrect Supabase details, such as the URL or publishable key, and an internet DNS connection problem. WL_CONNECTED only confirms that the ESP32 is connected to the router. It doesn't guarantee internet access or that it can reach Supabase.
 
    ```
 
 3. One device reads `-48 dBm` and another reads `-78 dBm`. Which has the stronger signal, roughly how many times stronger is it, and what would you expect from each connection?
    ```
-
+   -48 dBm is stronger than -78 dBm because the closer the value is to zero, the stronger the signal. The 30 dB difference means the stronger signal has 1,000 times more received power. The -48 dBm connection should be faster and more stable, while the -78 dBm connection may be slower and experience dropouts.
 
    ```
 
 4. When would you give an IoT device a static IP, and when is DHCP fine? Why is a DHCP reservation on the router often a better choice than `WiFi.config()` in the sketch?
    ```
-
+   A static IP is useful when an IoT device needs to always be reachable at the same IP address and DHCP is fine for devices that only need to connect to Wi-Fi and send data. A DHCP reservation is usually better because the router's DHCP server always assigns the same IP to that device, reducing the chance of IP conflicts and avoiding manual configuration in the code.
 
    ```
 
 5. Compare polling `WiFi.status()` in `loop()` with using `WiFi.onEvent()`. What can events tell you that polling can't, and why must an event function only set flags instead of printing, waiting or reconnecting?
    ```
-
+   Polling makes the ESP32 repeatedly check whether Wi-Fi is connected or disconnected. Events notify the ESP32 when something happens, such as connecting or disconnecting, and can provide the reason. The event function should only set flags because it needs to finish quickly, while the main loop handles the printing and reconnecting.
 
    ```

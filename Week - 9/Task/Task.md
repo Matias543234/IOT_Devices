@@ -17,8 +17,10 @@ A school library is installing smart lockers that students unlock from an app. E
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
 >
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zlZZdb5swFIb_SnWuTWVjyIfv1m6qom1dtbU3naoKHCdxAjY1JmlS5b9Ppsn4ELDuLsHH73POeY8Nb7DQJo0sMJDaelwaXkjr5baYSw0ItsLkUitgBIGKUgEMvu8vZvr-4hQKCLgRkRVzYOBjf-QR4uHgHhOGp8yfXk7w9BEQFNm8I4gyHzMaXlI_dEGxjsx85oJEnlHfy6mXSe7y4DrNtBLK5sB-v4F0MQ8EENh95pIqdwKCV2AEYwR7YCOMwGgLDCNIolgkwOAXvbibXf8ABJnRWQ7s7dhPPaITiD-TFRnLIK54iTjRPBq843x85pFJjfjty2dSwwHXiTbAYGmEUHBEsEhkBmwRJbmoAZe-ygIzGQISvw_odwGNmA_g8o1I92mtn8XhIMyJWJJcieGZOK0Brx4bBW6kcpoRt3IrKqI1RR2YbjcjHtUNLKzV6h0YniqktMPCq_vbzobGScQ3bqFIXJhU1iuy_orzg1rvaFAlYEQuc6vbNRPa2eWfjRz0Ks2BkRD34l7jURzHSYVbqrOfAWn7We_uzW1jfnoBATbksBt3AejJvfFZv_xVA_gfAYyESF7WpAMwOgHKwewE0I8A7DYOiOH_dmTa7Yj_f47I8YG8FtGQI9WRbjkS9NfzhGAnjahdU7vnDaUrf50Dgqic2NYAZu5SdJMaV6vV-Xern9zqmV_dS7vnNA_tMlZN5ebery3lahLd6l2fcjjB9jBetpT_XhNu721LuRrBQWWcButQFU3l6j5we0lD-eH8-OZu9iPok51IsziE6yHZdpOrkR5MeIlf9jzdNJWrae1Srt4Xw_bxMRYZbyo397btq8Z2MOfFdrcioRwauYEmE9qnu6IrQjAf6sWQbq97ib9ZiEk4NG53A7qThi6C1MmqIknceeRFbnV6refi_ZmLVEv3jjLzQir3eZHI2ERGlsf2CUFcYrLI2NMJXxdpJkz553j8Aw)
+>
+> Smart locker wifi monitor schematic: ![Smart Locker Wi-Fi Monitor circuit schematic showing the ESP32-PICO, two LEDs, passive buzzer and push button](image-1.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
