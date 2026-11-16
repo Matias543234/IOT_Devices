@@ -17,7 +17,11 @@ A junior football club plays on a council oval with no Wi-Fi and patchy mobile c
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zlZZRb5swFIX_SnWfocKYkMRvazdV1bY22rqXTlVlwGRuALvGJk2q_PfJlAyIgLWPia_Pd499bPMKqVA51UCAC-3GXMWGa7fUJuECHKiYKrkogCAHCpozIPB9d3Yt7s6aUnAgVoxqlgAB3_NDFyEXoTsPERySGT4PF-E9OGBkMlgU-CQIz_3F0hZFgqrk2haxUmLfLbEreWz7iEUuRcEKXQL5_Qrc1vxC4IDeSdtUPRMceAGCPM-BHZDQc0AJDcRzIKMRy4DAT3y2ur68BQekErIE8noYpx6cBhQ_xsunDY1wy8tYQ3Nx8IZD_pGHFh3ity-fUQcHsciEAgKKJXBwIM24BJLSrGQd3IuZF1iyKZzvjeH8D-M8nHGR-J3VNPs9Uw2xNmaJsyNx2QFe3PfsbXhhNWmsecVaolamBzTz5Wz91AVqLYo34KxxiPHABl7c3QwuZ5TReGMHTGbLeKFdI8cd61kYJMm8bWBdNAsc4oYeHOn-vMO_uult5yigSJ_2fiUHAG4DqGUHAf57AAzzuKK0BShW8lKL011Dy8Gc_OitoviTl0DQzBvFLfepzqrnIT8BOk3ksu8Hv8cP2u7XyUv6fz942I__MT_bHfZnazXlpz3QJ36CcT8PDmy5Yp1LavtoZEXjsAIHaJ3YkxMggQCySY2Oo_W9Zv--Wl3fBnboCG-vpO0jZSbNN_6UrN-T7abejq7GlKsw1ZG3O1H-d0fYuTcnym3cJ5U5CgSv34yOcpvkoZ7bq9COfhpTjuVmH9VhoWNzv54ot5Ge7NlbVFtPmr5ym9ahntvXYrLnzSaTz8usr9yfe9pzG9vJnrW3i6IcT_U8ETmEx3RnOMlFupjavynd0SwHAmeGPU8lbjWhu-jrPjgQm1KL_FIkDEhhsswOF2v7MKnE8MJ-UWQ8UlTx-qw-OBDV2pIq3RzrJ5NLpuofh8Nf)
+>
+> ScoreBoard Controller schematic:
+>
+>![Wiring schematic for the ESP32-PICO junior sports scoreboard controller, showing two LEDs, a passive buzzer and a reset push button connected to GPIO pins.](image-1.png)
 >
 > <details><summary>Schematic link</summary>
 >
@@ -29,10 +33,10 @@ A junior football club plays on a council oval with no Wi-Fi and patchy mobile c
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Home LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Away LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Passive buzzer + (buzzer − → GND) | Digital output (`tone()`) | GPIO ___ |
-> | Reset button (other leg → GND, `INPUT_PULLUP`) | Digital input | GPIO ___ |
+> | Home LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
+> | Away LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 14 |
+> | Passive buzzer + (buzzer − → GND) | Digital output (`tone()`) | GPIO 18 |
+> | Reset button (other leg → GND, `INPUT_PULLUP`) | Digital input | GPIO 4 |
 
 **How to draw the schematic:** before building the circuit, draw it in [Circuit Studio](https://circuit-studio.pages.dev/).
 - Include every component in the list above: the ESP32-PICO, both LEDs with their 220 Ω resistors, the passive buzzer and the push button.

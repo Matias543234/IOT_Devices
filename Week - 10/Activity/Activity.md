@@ -45,6 +45,8 @@ Test it: join from two devices, then try a third. Finally, change the password t
 >
 > Evidence: _(Serial Monitor screenshots of: the access point details, the device count going up to 2, and the 7-character password error; plus a phone screenshot showing your network in its Wi-Fi list and the third device being refused)_
 >
+>A copy of my code Activity 1: https://wokwi.com/projects/480650947608373249
+
 **Check yourself:**
 - [ ] Network name is `AP-<initials>-XXXX`, built from the MAC address in `makeUniqueName()`
 - [ ] `softAP()` gets all five settings, in the right order, from named constants
@@ -72,8 +74,11 @@ A field technician wants to know who is connected to a remote pump controller. W
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zfZRdb5swFIb_SvRemwoDy4fvtm6qom1ttHU3naKID4c6Bcxsk5RE-e-VWVogCrnE5_h9znvOMQespcpDAwYhjRMLFVfCONpUiZAg2HKlhSzAKEER5hwMP-vRXD6OTqkgiBUPDU_A4Lne2KHUocGjO2VuwILZDQ2mTyCoyuRy0oQF9GZCxzYpkqFK5jaJ69L3HO07pYhtHbHMS1nwwmiwvwcIm_OHgsDUpS2quQmCVzDqugQ12NglUNKAuQRZGPEMDL_90WJ--wCCUslSgx2Ow9QjOYHilZ7VkVqnLS_jJ5rjB_9x1Hvn0WmH-OPbV9rBIZaZVGBQPMGRYJ2JEmwdZpp3cK9Um3XiduxV-z1XJ2JDqsG8D6I36RC_PPWAL6KwomFsxJYPI6soGUevVYtMiw-HV3F39z2DgwDjPgs3iluA4lpoI89dUf9iH3_1TMnnXIPRT-4gzp9MEhnGl_wE9Hxis74fb9jPkmAnFO9s4W5VG67T2QYEYTPhsxGWYLi3jY_aaNttG13Y6Du_XbvdKq72-5SP-8ptI-1d70y53VQb_Tyk_K_Y-kW26yv3734_U247erVmtQ1l6m6u1Ux7ys0ztsd3i_kD9Yd0BZ_MXuT-WpcXV3Snfd0lQVxpI_NbmXCwosoyGy5S-1RUUonC_nUyEalQiWbcS4Ko0S5DZU6bsanykqvm43h8Aw)
 >
+>Activity 2: Join and Leave Monitor Schematic:
+>
+>![ESP32-PICO connected to a client LED through a 220 ohm resistor on GPIO13 and a passive buzzer on GPIO18, with the LED cathode and buzzer negative connected to GND.](image.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -84,8 +89,8 @@ A field technician wants to know who is connected to a remote pump controller. W
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Client LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Passive buzzer + (buzzer − → GND) | Digital output (`tone()`) | GPIO ___ |
+> | Client LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
+> | Passive buzzer + (buzzer − → GND) | Digital output (`tone()`) | GPIO 18 |
 
 Write `onWiFiEvent(WiFiEvent_t event, WiFiEventInfo_t info)` that handles `ARDUINO_EVENT_WIFI_AP_STACONNECTED`, `ARDUINO_EVENT_WIFI_AP_STAIPASSIGNED` and `ARDUINO_EVENT_WIFI_AP_STADISCONNECTED` by **only** copying the MAC address or IP into `volatile` variables and setting `volatile` flags. Register it with `WiFi.onEvent()` before `WiFi.softAP()`. Write `String macToText(const volatile uint8_t* mac)`. In `loop()`, with no `delay()`:
 - on a join: print `[JOIN] <mac> (total joins: <n>)` and start a **1000 Hz** chirp
@@ -99,6 +104,8 @@ Test it by joining and leaving from two devices (switching a phone's Wi-Fi off c
 >
 > Evidence: _(video of the LED and chirps as two devices join and leave, plus a Serial Monitor screenshot of the log)_
 >
+>A copy of my code Activity 2: https://wokwi.com/projects/480655635057231873
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -125,8 +132,11 @@ A teacher wants to set a classroom fan's speed from their phone as a percentage.
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zjdJdb5swFAbgvxK916aygaSJ76Z2qqJ9NNqym01RZMClrgAz2yRLI_77ZEIGidZptz6H8_Ae-4gnbUrhwKG0C1Jl0ka5wLomUxoEO2ms0hU4I6hEKcHx6TBZ6vWkbwVBaqRwMgNHSMNZwFjA4jWdcxrzeHHD4vl3EDR1dt00XdOIx3M-DW-ieeybEi1MtvRN0tZRGNgoqFXq_yPVZa0rWTkL_uMI5Xu-MRC4Q-1_qvsSBL_AGaUEB_AZJTDagVOCQiSyAMfXaLJa3j2CoDa6tuDH9m21JT2Ubu3ikJinfPAK2WtBFJ84Fp49Nh-JH9_fsxGHVBfagMPIDO1IcPRZ0SQdBCOtsk6bnunGeyb6K_PlAtHPpQVnUzoWotvbTIuRkFfnDDG7zrAYzX74fB-ON9ZuCPbKyNFV7Ldp8_qayxkIRBfzKlTtLx5-2UN1WKqvvvPVMwmC0g-umqL4E2G__VntoqrYXyKXYz5cIUNqX139B2J2Quf05V9J2AXSvUN__LBaPrLoTWJDkDbW6fJOZ_J05jurHBzCZI2q_EsvVGKEUd12NwRJx9TCuP61vjRlLc3pItrf)
 >
+>Activity 3: Classroom Fan Speed Schematic:
+>
+>![ESP32-PICO connected to an LED through a 220 ohm resistor on GPIO13, with the LED cathode connected to GND.](image-1.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -137,7 +147,7 @@ A teacher wants to set a classroom fan's speed from their phone as a percentage.
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Fan LED (through the 220 Ω resistor; LED cathode → GND) | Digital output (PWM) | GPIO ___ |
+> | Fan LED (through the 220 Ω resistor; LED cathode → GND) | Digital output (PWM) | GPIO 13 |
 
 Start an access point called `"Fan-<your initials>"` and a `WebServer` on port 80 with these routes:
 - `/` shows the current speed as a percentage, a `<form action='/speed' method='get'>` with a number input `name='percent'` (0-100), and quick links for **Off** (0 %), **Half** (50 %) and **Full** (100 %)
@@ -151,6 +161,8 @@ Test these addresses and screenshot each reply: `/speed?percent=75`, `/speed`, `
 >
 > Evidence: _(video of the LED changing brightness from the phone, plus phone screenshots of the six test replies)_
 >
+>A copy of my code Activity 3: https://wokwi.com/projects/480739681811993601
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -179,8 +191,11 @@ A workbench test rig needs a phone dashboard that updates by itself every second
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zjZVhb5swEIb_SnWfTWVjEoK_be1URdvaass2aVNVgXFSpwYTY5ImVf77ZJoIyCDrR7jjfe5e35lXmGuTxRYYSG09Lg2vpPVKW6VSA4K1MKXUOTCCII8zAQy-bi-menZxSAUE3IjYihQY-Ngfe4R4JJjhCcMBC6JLEkx-A4KqSE-TRjMcssBnOLyMcOiSEh2bdOqSRFlQ3yupV0ju6uA6K3QuclsC-_MK0uX8IIDAbgtXVP0lIHgBRjBGsAU2xgiMtsAwAhUnQgGD7_Tifnp1BwgKo4sS2Ot-mLpHBxB_LKNtYuaLhqfEgebR4A1H_COPTFrEL5-uSQsHXCttgIERKewRzJUsgM1jVYoWzuIniRPe4IwoZWm1OTBrlmPSXua3DlE_ZSUwMsKDOBqGqY5buEV-7C4gp91FLdDN7bXf9bIfsKDLFVdZ67gqa3X-xhgdDKRhz4F9nN322peomD-7QKVcmsytVxXDhsZiu8xK0xRQaCtyK3UmrDi4OqJvdfi9rd7fzfpcxRgP-7oOVuEu3jXUNed0Tbttk1FP2_QnJe8xFgcrFZV9J3eU96Me-Zvb63fJvxA6CTdpj_z4YBadHOX9sAugw4AHBBtpRGuVN4-82u0WYgwI4vqcT_agcBeHO9-kiTZL6aIfXPTIb3Z387jK1zRXm65y99vPJ8rNQrjo_ZCyWcd6gZfnaiYd5frGcq9v7qd3hA7prlX-zOsLpqXbjPC_uu1RO1txsJwUPIvOKdMT5WbEziqPIt8YUnSVm73_jxfBkKwNdi_SPyt7OhbN0J4teDEaj7FS56z4NVzwpCv7gIBXpdXZlU4FsLxSyoXzBTCITVrJ3P3ElExMbGQ9-A8Iklq6iI097Miyygph6of9_i8)
 >
+>Activity 4: Workbench Test Rig Dashboard Schematic:
+>
+>![ESP32-PICO connected to a potentiometer, push button and LED through a 220 ohm resistor, with the potentiometer wiper on GPIO8, button on GPIO4 and LED on GPIO13.](image-2.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -191,9 +206,9 @@ A workbench test rig needs a phone dashboard that updates by itself every second
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO ___ |
-> | Push button (other leg → GND, `INPUT_PULLUP`) | Digital input | GPIO ___ |
-> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO 8 |
+> | Push button (other leg → GND, `INPUT_PULLUP`) | Digital input | GPIO 4 |
+> | LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
 
 Build these routes:
 - `/` sends a page stored in a **raw string literal** (`R"rawliteral(...)rawliteral"`). Its JavaScript calls `fetch('/api/status')` every 1000 ms and shows: the potentiometer reading, the same reading as a percentage, whether the button is pressed, whether the LED is on, seconds since start-up, and the number of connected devices. If a fetch fails, the page shows `no connection`.
@@ -205,6 +220,8 @@ Read the potentiometer and button on their own `READ_INTERVAL = 200` ms timer; h
 >
 > Evidence: _(video of the dashboard updating as you turn the potentiometer and press the button, and the LED buttons working; screenshots of the raw JSON at `/api/status`, and of `/api/led?state=on` typed into the address bar returning `404` because it's a GET)_
 >
+>A copy of my code Activity 4: https://wokwi.com/projects/480746088999612417
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -232,8 +249,11 @@ A warning beacon for a building site is set up on-site from a phone. When the in
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zjdJdb5swFAbgvxK916aygebDd1M7VdE-Gm3ZzaYoMuBSV4CZbZKlEf99MiGDROu0W5_DeXiPfcSTNqVw4FDaBakyaaNcYF2TKQ2CnTRW6QqcEVSilOD4dJgs9XrSt4IgNVI4mYEjpOE0YCxg8ZrOOY15vLhh8fw7CJo6u266XdMFZzNOo5sp7ZoSLUy29E3S1lEY2CioVer_I9VlrStZOQv-4wjle74xELhD7X-q-xIEv8AZpQQH8CklMNqBU4JCJLIAx9doslrePYKgNrq24Mf2bbUlPZRu7eKQmKd88ArZa0EUnzgWnj02H4kf39-zEYdUF9qAw8gM7Uhw9FnRJB0EI62yTpue6cZ7Jvor8-UC0c-lBWe3dCxEs1mmxUjIq3OGmF1nWIxmP3y-D8cbazcEe2Xk6Cr227R5fc3lFASii3kVqvYXD7_soTos1Vff-eqZBEHpB1dNUfyJsN_-rHZRVewvkcsxH66QIbWvrv4DMTuhc_ryryTsAuneoT9-WC0fWfQmsSFIG-t0eaczeTrznVUODmGyRlX-pRcqMcKobrsbgqRjamFc_1pfmrKW5nQR7W8)
 >
+>Activity 5: Captive Portal Beacon Schematic:
+>
+>![ESP32-PICO connected to a beacon LED through a 220 ohm resistor on GPIO13.](image-3.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -244,7 +264,7 @@ A warning beacon for a building site is set up on-site from a phone. When the in
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Beacon LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Beacon LED (through the 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
 
 Start an access point called `"Beacon-Setup-<your initials>"` with a `DNSServer` on port 53 answering every name (`"*"`) with `WiFi.softAPIP()`. Routes:
 - `/` shows the beacon's name as a heading, and a form (sent to `/save`) with the name and the flash interval in milliseconds, pre-filled with the current values
@@ -256,6 +276,8 @@ In `setup()`, load the saved values with defaults of `"Site Beacon"` and `500` m
 >
 > Evidence: _(video showing the setup page popping up by itself when your phone joins, saving a new interval and the LED changing speed; Serial Monitor screenshot after a power cycle showing the saved values loaded; phone screenshot of an invalid interval being rejected)_
 >
+>A copy of my code Activity 5: https://wokwi.com/projects/480824662753940481
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -283,8 +305,11 @@ A farmer has a water pump in a paddock with no Wi-Fi and no mobile coverage. The
 
 > **Schematic:**
 >
-> _[Schematic image placeholder: draw this circuit in [Circuit Studio](https://circuit-studio.pages.dev/), then paste your exported schematic image here (Export → Schematic image) and add your share link (Export → Share link) below it.]_
+>[Finished Schematic](https://circuit-studio.pages.dev/#p=zlZVvb5swEMa_SnWvncp_oAl-N7VTFW1roy3bpE1VZcCkzgBTY0iTKN99giYCMmDty-Dz87u7x3fZQ6RNIixwUNpOAmWCQtlJbotQaUBQSpMrnQInCFKRSODwZXsx18uLYyggCIwUVobAgWJ6NSFkQpwlnnHscMe7JM7sFyAosvA8yF1ij1PC6eySTWkV5GthwnkVJPOM0UnOJpkKqjwCnWQ6lanNgf_eg6pivhNAYLdZlVR9ExC8ACcYI9gCv8IIjLbAMYJY-DIGDt_YxWJ-fQ8IMqOzHPj-MEw9oCMoeMy9rW-iVcOL5ZE2Yc4rjtATj8xaxM8fb0gLB4GOtQEORoZwQBDFKgMeiTiXLZzFTwr7QYMzMle51ebIrFkVk_Uyv3aI-inJgRMXD-LYdBpq0cKt0lN1DjmvzmuBbu9uaLeX_YCNUVFB8waQaStTq3QirTwW5bJXEu0lLe6XfUVhjIfLKtcKp-WoaRQPmUbfbVrk2rDw8P9N8_pNo-8zzRUvL2uhxkxrqjszjbzFtCflPmfTVvvKIGAlO7p1evVuz5SxH-xNhLDQkfRZTwkneer1yN_e3bBh-QcEG2Vka09sHoNit1vJK0AgajvPhiyrtlJlrN-cNhNfnX6oTk_8ZjFsHp_TkqXxpqvcvfvpTLmZtup0MaRsSqFXeD2WM-ko1-uw-ny7mN8TNqRblitvHe-6us3b7etFM0ijvXBx6hsadZW7d8970Tzi0V64SRRhLMdyHuuFM-jen6kWwuvqNsvqX932VIxmvPLWgRPbMWV2ptxMw6jyJmQ7l4Zjyj-HezHryj4gCIrc6uRahxJ4WsRxdZyugIMwYaHS6s83Vr4RRtUz9YDAr6UzYexx_NZFkklT_zgc_gI)
 >
+>Activity 6: Paddock Irrigation Controller Schematic:
+>
+>![ESP32-S3-PICO connected to a potentiometer, pump LED and dry-warning LED.](image-4.png)
 > <details><summary>Schematic link</summary>
 >
 > [Open the example schematic in Circuit Studio]()
@@ -295,9 +320,9 @@ A farmer has a water pump in a paddock with no Wi-Fi and no mobile coverage. The
 >
 > | Connection | Pin type needed | Your GPIO |
 > |---|---|---|
-> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO ___ |
-> | Pump LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
-> | Dry-warning LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO ___ |
+> | Potentiometer wiper (outer legs → 3.3V and GND) | Analog input, **ADC1 only** | GPIO 8 |
+> | Pump LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 13 |
+> | Dry-warning LED (through a 220 Ω resistor; LED cathode → GND) | Digital output | GPIO 14 |
 
 Requirements:
 - **Access point:** `"Irrigation-<your initials>"`, 8+ character password, at most **3** devices, return value checked.
@@ -313,6 +338,8 @@ Requirements:
 >
 > Evidence: _(video showing: the page popping up when the phone joins, moisture updating live, a 10-second pump run switching itself off, a pump run stopped early, and the dry LED reacting after you change the dry level; Serial Monitor screenshot after a power cycle showing the saved dry level; screenshot of `seconds=2` being rejected)_
 >
+>A copy of my code Activity 6: https://wokwi.com/projects/480831666065293313
+
 **Check yourself:**
 - [ ] Pin table filled in with pins that follow the pin rules, and the same pins used in both the schematic and the code constants
 - [ ] Schematic drawn in Circuit Studio using every component listed above, pasted into the Schematic box with its share link
@@ -404,30 +431,30 @@ Answer these in your own words before moving on:
 
 1. List the three jobs the ESP32-PICO does when it runs as an access point. Why can't a phone joined to it reach the internet, and what does the phone usually do about that?
    ```
-
+   The ESP32-PICO performs three jobs when running as an Access Point: the Access Point creates a Wi-Fi network that phones can connect to, the DNS Server redirects domain requests to the ESP32's IP address, and the Web Server hosts the captive portal webpage and handles user requests. The phone cannot reach the internet because the ESP32 is not connected to an internet router. The phone usually detects this and displays a notification asking the user to sign in to the Wi-Fi network.
 
    ```
 
 2. A classmate sets their access point password to `"lab"` and says "the code runs fine, but my network doesn't show up". Explain what happened, and the two changes that would have made the problem obvious or avoided it.
    ```
-
+   The issue is that the password is only 3 characters long, which causes a problem because the ESP32 requires at least 8 characters for an access point password. The two ways to avoid this are to use a password with at least 8 characters and check the return value of WiFi.softAP() and display an error message in Serial Monitor if the access point fails to start.
 
    ```
 
 3. Why must every value from `server.arg()` be validated, even on a network only you know the password to? Give an example of what could go wrong in the irrigation controller without validation.
    ```
-
+   Even if the Wi-Fi has a password, it is always crucial to validate every value for security because someone could connect and send faulty data. For example, in the irrigation controller, someone could enter an invalid pump duration or a value outside the allowed range, causing the pump to run for an unintended amount of time.
 
    ```
 
 4. Compare a page that reloads itself every 5 seconds with a page that fetches `/api/status` every second. Give two advantages of the `fetch()` design, and explain why the pump controls use POST instead of GET.
    ```
-
+   The advantages of fetch() are that it retrieves the latest data in JSON without needing to reload the entire page to update the readings. It also updates the data every second, making it faster and smoother while the user can continue using the dashboard. POST is used for the pump controls because it performs actions that change the pump's state, while GET is used to retrieve information without changing anything.
 
    ```
 
 5. Explain, step by step, how a captive portal makes the setup page open by itself when a phone joins. Why is `Preferences` needed for a setup page to be useful, and why must settings only be saved when the user presses Save?
    ```
-
+   First, the phone connects to the ESP32's Wi-Fi network. Then, the ESP32's DNS Server redirects domain requests to its own IP address. After that, the ESP32's Web Server responds with the captive portal page, and finally, the phone displays the setup page, often automatically through its WiFi sign-in notification. Preferences is used to save settings permanently in the ESP32's storage, just like how it saved the dry level of 60% in Activity 6. Settings are saved only when the user presses Save to avoid accidental changes without the user's permission.
 
    ```
